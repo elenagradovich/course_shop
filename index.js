@@ -2,6 +2,10 @@ const express = require('express')
 const path = require('path')
 const exhbs = require('express-handlebars');
 
+const homeRoutes = require('./routes/home');
+const addRoutes = require('./routes/add');
+const coursesRoutes = require('./routes/courses');
+
 const app = express();
 
 //express-handlebars движок для рендеренга html страниц
@@ -16,26 +20,10 @@ app.set('views', 'views'); // установка пути к представл�
 
 app.use(express.static('public')); //добавляет новые мидлвере
 //обработка get запроса
-app.get('/', (req, res, next) => {
-  res.render('index', {
-    title: 'Main page',
-    isHome: true
-  });
-});
 
-app.get('/courses', (req, res, next) => {
-  res.render('courses', {
-    title: 'Courses',
-    isCourses: true
-  });
-});
-
-app.get('/add', (req, res, next) => {
-  res.render('add', {
-    title: 'Add course',
-    isAdd: true
-  });
-});
+app.use('/', homeRoutes); //'/' префиксы
+app.use('/add', addRoutes);
+app.use('/courses', coursesRoutes);
 
 const DEFAULT_PORT = 3000;
 const PORT = process.env.PORT || DEFAULT_PORT;
