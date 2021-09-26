@@ -19,8 +19,7 @@ app.set('view engine', 'hbs');
 app.set('views', 'views'); // установка пути к представлениям
 
 app.use(express.static('public')); //добавляет новые мидлвере
-//обработка get запроса
-
+app.use(express.urlencoded({extended: true}));
 app.use('/', homeRoutes); //'/' префиксы
 app.use('/add', addRoutes);
 app.use('/courses', coursesRoutes);
