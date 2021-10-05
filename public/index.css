@@ -1,3 +1,14 @@
 .nav-wrapper {
   padding: 0 2rem;
 }
+
+.price {
+  display: flex;
+  width: 20%;
+  padding-left: 15px;
+  color: orangered;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 50%;
+  border-left: 5px solid orangered;
+}

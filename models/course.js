@@ -23,7 +23,8 @@ class Course {
 
   async save() {
     const courses = await Course.getAll()
-    courses.push(this.toJSON())
+    courses.push(courses.toJSON())
+    console.log(courses);
 
     return new Promise((resolve, reject) => {
       fs.writeFile(
