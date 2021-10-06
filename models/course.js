@@ -23,8 +23,7 @@ class Course {
 
   async save() {
     const courses = await Course.getAll()
-    courses.push(courses.toJSON())
-    console.log(courses);
+    courses.push(this.toJSON())
 
     return new Promise((resolve, reject) => {
       fs.writeFile(
@@ -55,6 +54,11 @@ class Course {
         }
       )
     })
+  }
+
+  static async getById(id) {
+    const courses = await Course.getAll();
+    return courses.find((item) => item.id === id);
   }
 }
 

@@ -4,7 +4,6 @@ const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
-
 const app = express()
 
 const hbs = exphbs.create({
@@ -17,7 +16,7 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 app.use(express.static('public'))
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
