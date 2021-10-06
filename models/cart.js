@@ -9,20 +9,21 @@ const p = path.join(
 )
 
 class Cart {
-
   static async add(course) {
     const cart = await Cart.getAll()
     const index = cart.courses.findIndex((item) => item.id === course.id)
+    console.log('index:', index)
     const product = cart.courses[index]
+    console.log('product:', product)
     if(product) {
       //курс уже есть увеличиваем количество
       product.count ++
       cart.courses[index] = product
+    } else {
+      //добавить курс
+      course.count = 1
+      cart.courses.push(course)
     }
-    //добавить курс
-    course.count = 1
-    cart.courses.push(course)
-
     cart.price += +course.price
 
     return new Promise((resolve, reject) => {
