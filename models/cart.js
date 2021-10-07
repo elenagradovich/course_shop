@@ -12,9 +12,7 @@ class Cart {
   static async add(course) {
     const cart = await Cart.getAll()
     const index = cart.courses.findIndex((item) => item.id === course.id)
-    console.log('index:', index)
     const product = cart.courses[index]
-    console.log('product:', product)
     if(product) {
       //курс уже есть увеличиваем количество
       product.count ++
@@ -58,18 +56,16 @@ class Cart {
   }
   static async remove(id) {
     const cart = await Cart.getAll();
-    console.log('cart 1', cart.courses.length)
     const index = cart.courses.findIndex(course => course.id === id);
     const course = cart.courses[index];
 
     if (course.count === 1) {
       cart.courses.splice(index, 1);
     } else {
-      cart.courses[index].count--;
+      cart.courses[index] && cart.courses[index].count--;
     }
 
     cart.price -= course.price;
-    console.log('cart2', cart.courses.length)
     return new Promise((resolve, reject) => {
       fs.writeFile(
         p,
