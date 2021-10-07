@@ -56,6 +56,34 @@ class Cart {
       )
     })
   }
+  static async remove(id) {
+    const cart = await Cart.getAll();
+    console.log('cart 1', cart.courses.length)
+    const index = cart.courses.findIndex(course => course.id === id);
+    const course = cart.courses[index];
+
+    if (course.count === 1) {
+      cart.courses.splice(index, 1);
+    } else {
+      cart.courses[index].count--;
+    }
+
+    cart.price -= course.price;
+    console.log('cart2', cart.courses.length)
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        p,
+        JSON.stringify(cart),
+        (err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(cart)
+          }
+        }
+      )
+    })
+  }
 }
 
 module.exports = Cart
