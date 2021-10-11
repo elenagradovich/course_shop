@@ -39,8 +39,7 @@ function start () {
     const URL = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000'
     mongoose.connect(URL, function (err) {
       if (err) throw err;
-      console.log('DB successfully connected');
-    })//открыть соединение с БДgit
+    })//открыть соединение с БД
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`)
     })
