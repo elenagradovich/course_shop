@@ -15,7 +15,8 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     img: req.body.img,
-    description: req.body.description
+    description: req.body.description,
+    userId: req.user
   })
    try {
      await course.save() //сохранение коллекции в БД

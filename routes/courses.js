@@ -3,7 +3,12 @@ const Course = require('../models/course')
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const courses = await Course.find()
+  const courses = await Course
+    .find()
+    .populate('userId', 'email name') //populate достает и добавляет данные по id в таблицу courses из users
+    .select('price title img') //select относится к курсам, для вывода нужных полей
+
+
   res.render('courses', {
     title: 'Курсы',
     isCourses: true,
