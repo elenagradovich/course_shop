@@ -3,7 +3,7 @@ const Course = require('../models/course')
 const router = Router()
 
 router.get('/', (req, res) => {
-  res.render('add', {
+  res.render('add_course', {
     title: 'Добавить курс',
     isAdd: true
   })

@@ -9,10 +9,13 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+const handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const exphbs = require('express-handlebars')
 const hbs = exphbs.create({
   defaultLayout: 'main',
-  extname: 'hbs'
+  extname: 'hbs',
+  handlebars: allowInsecurePrototypeAccess(handlebars)
 })
 
 app.engine('hbs', hbs.engine)
