@@ -10,8 +10,19 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const course = new Course(req.body.title,req.body.description, req.body.price, req.body.img)
-  await course.save()
+
+  const course = new Course({
+    title: req.body.title,
+    price: req.body.price,
+    img: req.body.img,
+    description: req.body.description
+  })
+   try {
+     await course.save() //сохранение коллекции в БД
+   } catch (e) {
+    console.log(e)
+   }
+
   res.redirect('/courses')
 })
 

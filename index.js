@@ -1,13 +1,15 @@
 const express = require('express')
 const path = require('path')
-const exphbs = require('express-handlebars')
+
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
 const coursesRoutes = require('./routes/courses')
-const app = express()
 const mongoose = require('mongoose')
 
+const app = express()
+
+const exphbs = require('express-handlebars')
 const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs'
@@ -35,7 +37,7 @@ function start () {
     mongoose.connect(URL, function (err) {
       if (err) throw err;
       console.log('DB successfully connected');
-    })//открыть соединение с БД
+    })//открыть соединение с БДgit
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`)
     })
