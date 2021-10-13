@@ -48,8 +48,10 @@ const PORT = process.env.PORT || DEFAULT_PORT
 async function start () {
   try {
     const URL = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000'
-    mongoose.connect(URL, function (err) {
-      if (err) throw err;
+    await mongoose.connect(URL, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
     })//открыть соединение с БД
 
     const candidate = await User.findOne()

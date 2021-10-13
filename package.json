@@ -11,13 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@handlebars/allow-prototype-access": "^1.0.5",
-    "express": "^4.16.4",
+    "@handlebars/allow-prototype-access": "1.0.5",
+    "express": "4.16.4",
     "express-handlebars": "^3.0.2",
-    "mongoose": "^6.0.10",
-    "uuid": "^3.3.2"
+    "mongoose": "5.10.0",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "nodemon": "2.0.13"
   }
 }

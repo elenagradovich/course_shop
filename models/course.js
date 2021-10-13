@@ -15,6 +15,9 @@ const course = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   }
+}, {
+  timestamps: true,
+  toJSON: {virtuals: true}
 })
 
 module.exports = model('Course', course)
