@@ -2,6 +2,7 @@ const {Router} = require('express')
 const router = Router()
 const Course = require('../models/course')
 
+//...o._doc == ...o.toJSON()
 function mapCartItems(cart) {
   return cart.items.map(item => ({
     ...item.courseId._doc,
@@ -50,7 +51,8 @@ router.delete('/remove/:id', async (req, res) => {
   const user = await req.user.populate('cart.items.courseId').execPopulate()
   const courses = mapCartItems(user.cart)
   const cart = {
-    courses, price: countPrice(courses)
+    courses,
+    price: countPrice(courses)
   }
   res.status(200).json(cart)
 })

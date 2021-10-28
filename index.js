@@ -5,6 +5,8 @@ const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
 const coursesRoutes = require('./routes/courses')
+const ordersRoutes = require('./routes/orders')
+
 const mongoose = require('mongoose')
 const User = require('./models/user')
 
@@ -35,11 +37,13 @@ app.use(async (req, res,  next) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
-
+ // Регистрация роутов
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/courses', coursesRoutes)
 app.use('/cart', cartRoutes)
+app.use('/cart', cartRoutes)
+app.use('/orders', ordersRoutes)
 
 const DEFAULT_PORT = 3000
 const PORT = process.env.PORT || DEFAULT_PORT
