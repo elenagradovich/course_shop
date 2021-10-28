@@ -14,6 +14,7 @@ const app = express()
 const mongoose = require('mongoose')
 const handlebars = require('handlebars')
 const varMiddleware = require('./middleware/varaibles')
+const userMiddleware = require('./middleware/user')
 
 const MONGODB_URI = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000'
 
@@ -42,6 +43,7 @@ app.use(session({
   store
 }))
 app.use(varMiddleware)
+app.use(userMiddleware)
 
 // Регистрация роутов
 app.use('/', homeRoutes)
