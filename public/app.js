@@ -66,3 +66,6 @@ if($cart) {
   $cart.addEventListener('click', (e) => deleteCartItem(e))
 }
 
+//Для табов login
+M.Tabs.init(document.querySelectorAll('.tabs'))
+

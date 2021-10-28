@@ -6,10 +6,10 @@ const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
 const coursesRoutes = require('./routes/courses')
 const ordersRoutes = require('./routes/orders')
+const authRoutes = require('./routes/auth')
 
 const mongoose = require('mongoose')
 const User = require('./models/user')
-
 const app = express()
 
 const handlebars = require('handlebars')
@@ -44,6 +44,7 @@ app.use('/courses', coursesRoutes)
 app.use('/cart', cartRoutes)
 app.use('/cart', cartRoutes)
 app.use('/orders', ordersRoutes)
+app.use('/auth', authRoutes)
 
 const DEFAULT_PORT = 3000
 const PORT = process.env.PORT || DEFAULT_PORT
