@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const session = require('express-session')//middleware
 
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
@@ -8,11 +9,13 @@ const coursesRoutes = require('./routes/courses')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 
-const mongoose = require('mongoose')
-const User = require('./models/user')
 const app = express()
-
+const mongoose = require('mongoose')
 const handlebars = require('handlebars')
+const varMiddleware = require('./middleware/varaibles')
+
+const User = require('./models/user')
+
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const exphbs = require('express-handlebars')
 const hbs = exphbs.create({
@@ -33,11 +36,20 @@ app.use(async (req, res,  next) => {
  } catch (e) {
    console.log(e)
  }
-})//middleware - если не выполнится он, дальше выполнение прервется
+})
+//middleware - если не выполнится он, дальше выполнение прервется
+//secret: 'some secret value' - параметр на основе которого будет шифроваться
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
- // Регистрация роутов
+app.use(session({
+  secret: 'some secret value',
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(varMiddleware)
+
+// Регистрация роутов
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/courses', coursesRoutes)
