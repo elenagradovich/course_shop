@@ -14,7 +14,7 @@ const mongoose = require('mongoose')
 const handlebars = require('handlebars')
 const varMiddleware = require('./middleware/varaibles')
 
-const User = require('./models/user')
+
 
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const exphbs = require('express-handlebars')
@@ -28,15 +28,15 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 
-app.use(async (req, res,  next) => {
- try {
-   const user = await User.findById('61642c3a057c7fd4f3f8fa3c')
-   req.user = user
-   next()
- } catch (e) {
-   console.log(e)
- }
-})
+// app.use(async (req, res,  next) => {
+//  try {
+//    const user = await User.findById('61642c3a057c7fd4f3f8fa3c')
+//    req.user = user
+//    next()
+//  } catch (e) {
+//    console.log(e)
+//  }
+// })
 //middleware - если не выполнится он, дальше выполнение прервется
 //secret: 'some secret value' - параметр на основе которого будет шифроваться
 
@@ -71,15 +71,15 @@ async function start () {
       useUnifiedTopology: true,
     })//открыть соединение с БД
 
-    const candidate = await User.findOne()
-    if (!candidate) {
-      const user = new User({
-        email: 'elena@gmail.com',
-        name: 'elena',
-        cart: {items: []}
-      })
-      await user.save()
-    }
+    // const candidate = await User.findOne()
+    // if (!candidate) {
+    //   const user = new User({
+    //     email: 'elena@gmail.com',
+    //     name: 'elena',
+    //     cart: {items: []}
+    //   })
+    //   await user.save()
+    // }
 
 
     app.listen(PORT, () => {
